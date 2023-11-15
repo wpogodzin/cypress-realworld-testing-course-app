@@ -1,0 +1,6 @@
+|Plan for testing form 'Contact Us'
+1.Verify form fields are accessible and editable: 
+  id: "Name-3","E-mail-3","Phone-3","Message-3"
+2.Submit forms with valid and invalid data to check form validation.
+3.Confirm successful/unsuccesful form submission.
+Conclusion

@@ -1,0 +1,24 @@
+  
+
+Scheme of testing('Win' or 'Draw')
+
+1. Random choice of 9 buttons for clicking(next step of cycle - 8 buttons,7 and so on till 1)
+
+2. Clicking this button and reading the text
+   inside this button('X' || 'O', f.ex.'X')
+
+3. My checking: is there a Winner?('XXX' || 'OOO', depends on last move f.ex.'XXX') -
+   searching for 1 of 8   combinations  having 'XXX'
+   using Array of winning triple-array index combinations(f.ex.[0,3,6])
+
+    3a. If Yes, we have 'Winner: X'(there is such a combination, f.ex.'XXX'),
+        so then checking if game is really OVER? For this we check:
+        1.is there headline 'Winner: X'?
+        2.nothing is changed if trying to click any button
+
+    3b. If 'No Winner' and there is no empty button for next move,
+           so we have 'Draw'  and  checking if game is really OVER?For this we check:
+         1.is there headline  'Draw'
+         2.nothing is changed if trying to click any button (edited) 
+
+    3c. If 'No Winner' and there is  minimum one empty button for next move, so test goes to p.1
