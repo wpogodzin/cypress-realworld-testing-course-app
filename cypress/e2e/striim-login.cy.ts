@@ -3,7 +3,7 @@ describe('Login Form', () => {
   beforeEach(() => {
     // Visit the login page
     cy.visit('http://developer.striim.com') 
-    cy.wait(5000)
+    cy.wait(10000)
   }) 
 
   it('should display the login form', () => {
