@@ -26,8 +26,8 @@ class StriimLoginPage {
   }
 
   // Method to check URL of page
-  checkURL(url) {
-    cy.url().should('eq', url) 
+  checkURL(url , timeout = 0 ) {
+    cy.url().should('eq', url).wait(timeout) 
   }
 
   // Method to check for the visibility of the error message
