@@ -5,15 +5,14 @@ import { urls, testData } from '../pom3config';
 describe("How to create first new app",() => {
 
   beforeEach (() => {
-    // 1.Have to wait!!!
-     // Variables
-    cy.visit('https://developer.striim.com').wait(testData.timeOut)
+
+    cy.visit('https://developer.striim.com')
     
   })
 
-  it('making first new app',() => {
+  it('making first new app for a new client',() => {
    
-    // 2.Mistake handling
+    // 1.Mistake handling when automatically testing(only)!!!
     cy.on('uncaught:exception', (err, runnable) => {  
       if(err.message.includes('s.ui.password.val')){
         console.log('!!!!!We pass mistake with element "s.ui.password.val"!!!!!')
@@ -22,42 +21,52 @@ describe("How to create first new app",() => {
         return true;
       })
 
+    // 2.We have to wait login form!!!
+    Striim.expectLoginForm(testData.timeOutLoginForm) 
+
     //// Login/Password Form
     // Input login and password
     Striim.fillUserName()
     Striim.fillPassword()
     // Submit the form
     Striim.clickLogin()
-    // Assuming a successful login and password redirects to the landing page
-    Striim.checkURL(urls.urlLoginForm)
-      
-    // Loading and checking of loading landing page
-    // 3.Have to wait!!!
-    Striim.checkURL(urls.urlLandingPage,testData.timeOut)
 
-    // If exist greeting when there is no any apps?
+
+    // Loading and checking of loading landing page
+    // 3.Have to wait landing page!!!
+    Striim.checkURL(urls.urlLandingPage,testData.timeOutLandingPage)
+
+    // If exist greeting (in case there is no any apps)?
     Striim.existGreetingForUserWithAppsEmpty()
 
-    //Click  button to create new app if it exists
-    Striim.clickButtonToCreateNewApp()
+    // Click  button to create new app if it exists
+    Striim.clickButtonCreateNewApp()
 
-    //Check URL for creating new app
+    // Check URL for creating new app
     Striim.checkURL(urls.urlCreateNewApp)
 
-    //Find element for creating from scratch and click
+    // Find element for creating new app from scratch and click
     Striim.createNewAppFromScratch()
 
-    //Check URL for page with giving name to new app
-    Striim.checkURL(urls.urlCreateNameForNewApp)
+    // Check URL for the page where client gives name to new app
+    Striim.checkURL(urls.urlCreateNameNewApp)
 
-    //Name app
-    Striim.addNameForFirstNewApp()
+    // Giving name to new app
+    Striim.addNameFirstNewApp()
 
-    //Click button for submit new app
+    // Click button for submit new app
     Striim.submitNewApp()
 
-    //Check URL for work with new app :Url is OK, but picture is different(without left column - only in test)
-    Striim.checkURL(urls.urlGettingStartedWithNewApp)
+    // Check URL for getting started with new app 
+    // (4.) Url is OK, but final picture is different
+    // (when tested automatically):
+    //  necessary page appears for one second and then disappears
+    // (more details: only left columns with instruments disappears)
+    // 
+    // Now is OK,when using .wait(1000)
+    // when using timeout = 5000(4000 stand + 1000), 
+    // the result is bad with mistake(see above)
+    Striim.checkURL(urls.urlGettingStartedNewApp)
     
   })
 
