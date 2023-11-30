@@ -63,8 +63,8 @@ describe("How to create first new app",() => {
     //  necessary page appears for one second and then disappears
     // (more details: only left columns with instruments disappears)
     // 
-    // Now is OK,when using .wait(1000)
-    // when using timeout = 5000(4000 stand + 1000), 
+    // Now is OK,when using .wait(2000)
+    // when using timeout = 6000(4000 stand + 2000), 
     // the result is bad with mistake(see above)
     Striim.checkURL(urls.urlGettingStartedNewApp)
     
